@@ -1,0 +1,38 @@
+in-model evaluation ...
+  static       458.2 bp/yr   vs static   +0.00
+  immunize     428.3 bp/yr   vs static  -29.96
+  myopic       505.3 bp/yr   vs static  +47.05
+  dp           508.1 bp/yr   vs static  +49.90
+  fqi          508.1 bp/yr   vs static  +49.90
+cost sweep (DP re-solved, agent re-trained at every level) ...
+  cost    0.0bp  advantage bp/yr dp=  54.35  fqi=  54.01  myopic=  54.34  hold dp=0.03 fqi=0.03
+  cost    1.0bp  advantage bp/yr dp=  53.08  fqi=  53.41  myopic=  52.90  hold dp=0.04 fqi=0.04
+  cost    2.0bp  advantage bp/yr dp=  52.83  fqi=  52.01  myopic=  51.53  hold dp=0.04 fqi=0.05
+  cost    5.0bp  advantage bp/yr dp=  50.56  fqi=  50.88  myopic=  47.34  hold dp=0.05 fqi=0.06
+  cost   10.0bp  advantage bp/yr dp=  48.85  fqi=  48.92  myopic=  38.39  hold dp=0.07 fqi=0.09
+  cost   20.0bp  advantage bp/yr dp=  45.07  fqi=  44.30  myopic=  28.03  hold dp=0.10 fqi=0.13
+  cost   35.0bp  advantage bp/yr dp=  40.27  fqi=  39.88  myopic=  10.69  hold dp=0.13 fqi=0.19
+  cost   50.0bp  advantage bp/yr dp=  36.46  fqi=  36.05  myopic=   2.63  hold dp=0.17 fqi=0.23
+  cost   75.0bp  advantage bp/yr dp=  31.81  fqi=  31.44  myopic=   0.05  hold dp=0.23 fqi=0.27
+  cost  100.0bp  advantage bp/yr dp=  27.77  fqi=  27.76  myopic=   0.00  hold dp=0.28 fqi=0.33
+  cost  150.0bp  advantage bp/yr dp=  22.02  fqi=  21.47  myopic=   0.00  hold dp=0.35 fqi=0.40
+  cost  200.0bp  advantage bp/yr dp=  17.49  fqi=  17.14  myopic=   0.00  hold dp=0.41 fqi=0.44
+  cost  300.0bp  advantage bp/yr dp=  11.13  fqi=  11.06  myopic=   0.00  hold dp=0.51 fqi=0.52
+  cost  500.0bp  advantage bp/yr dp=   4.42  fqi=   4.42  myopic=   0.00  hold dp=0.69 fqi=0.71
+  break-even (bp): {'dp': None, 'fqi': None, 'myopic': 75.0, 'immunize': 0.0}
+off-model evaluation ...
+  train      retention immunize=1.00  myopic=1.00  dp=1.00  fqi=1.00
+  curvature  retention immunize=1.06  myopic=0.95  dp=0.94  fqi=0.95
+  regime     retention immunize=1.13  myopic=0.93  dp=0.95  fqi=0.95
+  jump       retention immunize=1.12  myopic=1.00  dp=1.01  fqi=0.99
+historical evaluation (Gate E open) ...
+[Gate E] PASS
+  immunize  walk advantage   -38.6 bp/yr [-140.8, 62.4]
+  myopic    walk advantage   +43.4 bp/yr [-48.6, 141.2]
+  dp        walk advantage   +47.0 bp/yr [-45.6, 147.5]
+  fqi       walk advantage   +49.8 bp/yr [-50.4, 154.2]
+  wrote figures/policy_map.png
+  wrote figures/no_trade_region.png
+  wrote figures/cost_sweep.png
+  wrote figures/offmodel.png
+  wrote figures/historical.png

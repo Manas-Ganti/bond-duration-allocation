@@ -1,0 +1,74 @@
+# Every number the code uses lives here. Curve parameters are PRIORS chosen before any
+# historical data was seen (Gate E); FRED calibration is reported, never used to retrain.
+seed: 20261014
+
+time:
+  dt: 0.0833333333333333   # one month, in years
+  horizon: 24              # rebalances per episode
+
+curve:
+  ns_lambda: 0.7           # Nelson-Siegel decay, per year
+  level: {mu: 0.050, kappa: 0.15, sigma: 0.010}   # long-end asymptote of the curve
+  slope: {mu: 0.025, kappa: 0.40, sigma: 0.010}   # long minus instantaneous short rate
+  rho: -0.30               # correlation of level and slope shocks
+  obs_tenors: [2, 5, 10, 30]
+  vol_ewma: 0.94           # trailing-volatility estimator (monthly EWMA of level changes)
+
+stress:                    # evaluation only, never training
+  curvature: {mu: 0.0, kappa: 1.0, sigma: 0.015}
+  regime: {low_scale: 0.6, high_scale: 1.8, p_low_to_high: 0.05, p_high_to_low: 0.15}
+  jump: {intensity: 1.0, mean: 0.0, std: 0.0075}   # level jumps, per year / size
+
+buckets:
+  names: [short, intermediate, long]
+  maturities: [2.0, 7.0, 20.0]   # zero-coupon, constant maturity: modified duration = maturity
+
+portfolio:
+  weight_step: 0.1
+  max_weight: 0.7
+  max_turnover: 0.3        # one-way: 0.5 * sum |w_new - w_old|
+  duration_band: [4.0, 12.0]
+  band_mode: hard          # hard: band is part of the feasibility mask; soft: penalty only
+  band_penalty: 0.01       # reward penalty per year of duration outside the band
+  static: best_stationary  # or explicit weights, e.g. [0.3, 0.4, 0.3]
+  immunize: {target_duration: 8.0, tolerance: 0.5}
+
+costs:
+  train_bp: 5.0            # proportional cost, bp of notional traded (sum |dw|)
+  sweep_bp: [0, 1, 2, 5, 10, 20, 35, 50, 75, 100, 150, 200, 300, 500]
+
+dp:
+  level_points: 31
+  slope_points: 31
+  n_std: 3.0
+  quad_nodes: 7
+  check: {level_points: 51, slope_points: 51, quad_nodes: 9}
+
+fqi:
+  n_samples: 600000        # transitions per stage (300k left Gate C noise-limited in a reduced test)
+  rbf_level: 9
+  rbf_slope: 9
+  rbf_width: 1.0           # in units of centre spacing
+  ridge: 1.0e-6
+  box_n_std: 3.5           # exploratory state distribution: uniform over this box
+
+evaluation:
+  n_paths: 50000
+  ci_level: 0.95
+  sweep_n_paths: 20000
+
+policymap:
+  t: [0, 12]
+  inner_n_std: 2.0
+
+historical:
+  series: [DGS2, DGS5, DGS7, DGS10, DGS20, DGS30]
+  start: "1977-02-01"
+  n_boot: 10000
+
+gates:
+  a: {n_paths: 2000, n_steps: 600, mean_abs_tol: 0.0010, sigma_rel_tol: 0.05,
+      kappa_rel_tol: 0.10, rho_abs_tol: 0.05}
+  b: {base_yield: 0.05, small_move: 0.0010, tol: 0.0005, scan_max: 0.03}
+  c: {min_agreement: 0.90, max_mean_regret_bp: 0.5, grid_points: 21, n_std: 2.0}
+  d: {max_shortfall_frac: 0.05, min_map_agreement: 0.90, map_step_tol: 0.1}

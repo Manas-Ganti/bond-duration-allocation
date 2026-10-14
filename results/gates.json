@@ -1,0 +1,166 @@
+{
+  "A": {
+    "passed": true,
+    "date": "2026-10-14",
+    "seed": 20261014,
+    "target": {
+      "mean": [
+        0.05,
+        0.025
+      ],
+      "kappa": [
+        0.15,
+        0.4
+      ],
+      "sigma": [
+        0.01,
+        0.01
+      ],
+      "rho": -0.3
+    },
+    "estimate": {
+      "mean": [
+        0.050180283867884534,
+        0.02503990483258939
+      ],
+      "mu": [
+        0.05013724977151048,
+        0.025029368886516235
+      ],
+      "kappa": [
+        0.15124938981730682,
+        0.39895774974119647
+      ],
+      "sigma": [
+        0.00999388335740379,
+        0.009996601461772468
+      ],
+      "phi": [
+        0.9874749833757739,
+        0.9673001108995353
+      ],
+      "n_transitions": 1200000,
+      "rho": -0.2986876972254968
+    },
+    "error": {
+      "mean_abs": [
+        0.00018028386788453143,
+        3.990483258939012e-05
+      ],
+      "sigma_rel": [
+        0.0006116642596211141,
+        0.00033985382275314446
+      ],
+      "kappa_rel": [
+        0.008329265448712153,
+        0.0026056256470088357
+      ],
+      "rho_abs": 0.0013123027745031712
+    },
+    "checks": {
+      "mean": true,
+      "sigma": true,
+      "kappa": true,
+      "rho": true
+    }
+  },
+  "B": {
+    "passed": true,
+    "date": "2026-10-14",
+    "seed": 20261014,
+    "tolerance": 0.0005,
+    "small_move": 0.001,
+    "base_yield": 0.05,
+    "buckets": {
+      "short": {
+        "maturity": 2.0,
+        "max_err_small_moves": 8.586648283935485e-05,
+        "passed": true,
+        "break_point_dy": 0.005724,
+        "frac_sim_moves_beyond_break": 0.11641666666666667,
+        "sim_monthly_move_sd": 0.0036288865277941,
+        "mean_bias_bp_per_year": 3.8902909115931017
+      },
+      "intermediate": {
+        "maturity": 7.0,
+        "max_err_small_moves": 8.711111956914187e-05,
+        "passed": true,
+        "break_point_dy": 0.00354,
+        "frac_sim_moves_beyond_break": 0.25004166666666666,
+        "sim_monthly_move_sd": 0.0030888070912235234,
+        "mean_bias_bp_per_year": 28.942944543994138
+      },
+      "long": {
+        "maturity": 20.0,
+        "max_err_small_moves": 0.00020901230710790655,
+        "passed": true,
+        "break_point_dy": 0.001563,
+        "frac_sim_moves_beyond_break": 0.5923541666666666,
+        "sim_monthly_move_sd": 0.002936240863754793,
+        "mean_bias_bp_per_year": 208.23943666054075
+      }
+    }
+  },
+  "C": {
+    "passed": true,
+    "date": "2026-10-14",
+    "seed": 20261014,
+    "agreement": 0.9385087368280646,
+    "mean_regret_bp": 0.0263603362384596,
+    "max_regret_bp": 3.00188810710705,
+    "n_states": 14994,
+    "min_agreement": 0.9,
+    "max_mean_regret_bp": 0.5
+  },
+  "D": {
+    "passed": true,
+    "date": "2026-10-14",
+    "seed": 20261014,
+    "value_check_passed": true,
+    "map_check_passed": true,
+    "shortfall_bp_per_year": {
+      "mean": -0.09391889998192543,
+      "se": 0.2615111549862651,
+      "ci_low": -0.6064713453104773,
+      "ci_high": 0.4186335453466264,
+      "n": 50000
+    },
+    "dp_advantage_over_static_bp_per_year": {
+      "mean": 50.26161663757663,
+      "se": 1.1718203090279058,
+      "ci_low": 47.964891035529334,
+      "ci_high": 52.558342239623926,
+      "n": 50000
+    },
+    "shortfall_threshold_bp_per_year": 2.5130808318788316,
+    "map_agreement_within_step": 0.9843937575030013,
+    "map_by_t": {
+      "0": {
+        "exact_match": 0.9235694277711084,
+        "long_within_step": 0.9835267440309458,
+        "mean_abs_long_diff": 0.008043217286914766,
+        "hold_fraction_a": 0.05348806189142324,
+        "hold_fraction_b": 0.06342537014805923,
+        "hold_jaccard": 0.81282316442606,
+        "mean_regret_bp_grid": 0.026900232280200418
+      },
+      "12": {
+        "exact_match": 0.9230358810190743,
+        "long_within_step": 0.9852607709750567,
+        "mean_abs_long_diff": 0.006669334400426837,
+        "hold_fraction_a": 0.053888221955448845,
+        "hold_fraction_b": 0.06442577030812324,
+        "hold_jaccard": 0.8046795523906409,
+        "mean_regret_bp_grid": 0.02526102938854066
+      }
+    },
+    "n_paths": 50000,
+    "cost_bp": 5.0
+  },
+  "E": {
+    "passed": true,
+    "date": "2026-10-14",
+    "seed": 20261014,
+    "note": "FRED first loaded after A-D passed; 1977-02-28 to 2026-10-31"
+  }
+}
